@@ -7,7 +7,7 @@ const Modulate = () => (
     <Header />
 
     <main>
-      <div className="flex md:px-5">
+      <div className="flex md:px-5 flex-col md:flex-row">
         <Form />
       </div>
     </main>
