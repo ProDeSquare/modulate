@@ -11,7 +11,13 @@ const Footer = () => {
           ? currentYear
           : `${app.initYear}-${currentYear}`}{" "}
         {app.title}, a Product of{" "}
-        <a href={app.creator.website}>{app.creator.title}</a>.
+        <a
+          className="text-teal-500 hover:text-teal-600 transition-colors"
+          href={app.creator.website}
+        >
+          {app.creator.title}
+        </a>
+        .
       </p>
     </footer>
   );
