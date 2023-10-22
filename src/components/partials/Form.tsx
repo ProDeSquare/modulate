@@ -4,6 +4,7 @@ const Form = () => {
     "px-4",
     "py-3",
     "border",
+    "border-teal-100",
     "mt-1",
   ];
 
@@ -68,10 +69,11 @@ const Form = () => {
 
             <div className="mt-4">
               <button
-                className="bg-gray-900 text-white px-6 py-3 hover:bg-gray-700 transition-colors ease-in"
+                className="bg-gray-900 text-white px-6 py-3 hover:bg-teal-700 transition-colors ease-in"
                 type="submit"
               >
-                Compute.
+                Compute
+                <span className="text-teal-500 font-bold">.</span>
               </button>
             </div>
           </form>
@@ -79,7 +81,10 @@ const Form = () => {
       </section>
 
       <section className="flex-1 p-5">
-        <h3 className="text-3xl md:text-4xl font-bold">Result</h3>
+        <h3 className="text-3xl md:text-4xl font-bold">
+          Result
+          <span className="text-teal-500">.</span>
+        </h3>
 
         <p className="text-6xl flex tracking-tight mt-2">
           <span className="text-gray-700 truncate">--</span>
