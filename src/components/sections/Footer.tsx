@@ -1,7 +1,7 @@
 import app from "@/data/app";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear: number = new Date().getFullYear();
 
   return (
     <footer className="p-5 leading-snug">
