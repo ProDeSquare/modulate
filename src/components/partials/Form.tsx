@@ -160,7 +160,7 @@ const Form = () => {
         </div>
       </section>
 
-      <section className="flex-1 p-5">
+      <section className="flex-1 p-5 md:w-6/12">
         <h3 className="text-3xl md:text-4xl font-bold">
           Result
           <span className="text-teal-500">.</span>
@@ -176,11 +176,18 @@ const Form = () => {
         {previousComputation.price > 0 && (
           <p className="mt-4 text-teal-800 leading-relaxed">
             The resulting value of{" "}
-            <span className="font-bold">{previousComputation.price}</span>,
-            computed with the incorporation of a percentage increase of{" "}
-            <span className="font-bold">{previousComputation.percentile}</span>,
-            stands as{" "}
-            <span className="font-bold">{formattedValue(computedValue)}</span>.
+            <span className="font-bold break-words">
+              {previousComputation.price}
+            </span>
+            , computed with the incorporation of a percentage increase of{" "}
+            <span className="font-bold break-words">
+              {previousComputation.percentile}
+            </span>
+            , stands as{" "}
+            <span className="font-bold break-words">
+              {formattedValue(computedValue)}
+            </span>
+            .
           </p>
         )}
       </section>
