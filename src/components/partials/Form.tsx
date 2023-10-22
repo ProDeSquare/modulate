@@ -11,7 +11,7 @@ const Form = () => {
   return (
     <>
       <section className="p-5 bg-teal-50 flex-1 md:w-6/12">
-        <h3 className="text-2xl md:text-3xl font-bold border-b md:border-none pb-1 md:pb-0">
+        <h3 className="text-2xl md:text-3xl font-bold border-b border-teal-100 md:border-none pb-1 md:pb-0">
           Calculate
         </h3>
 
