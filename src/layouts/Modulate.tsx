@@ -1,11 +1,19 @@
+import Form from "@/components/partials/Form";
+import Header from "@/components/sections/Header";
+import Footer from "@/components/sections/Footer";
+
 const Modulate = () => (
-  <>
-    <h1>Modulate</h1>
+  <div className="max-w-screen-xl mx-auto font-medium text-gray-800">
+    <Header />
 
-    <p>Percentages with Precision</p>
+    <main>
+      <div className="flex md:px-5 flex-col md:flex-row">
+        <Form />
+      </div>
+    </main>
 
-    <footer>&copy; {new Date().getFullYear()} Modulate</footer>
-  </>
+    <Footer />
+  </div>
 );
 
 export default Modulate;
