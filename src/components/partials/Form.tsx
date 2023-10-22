@@ -22,6 +22,10 @@ const Form = () => {
 
   const [multipleOfTen, setMultipleOfTen] = useState<boolean>(false);
   const [computedValue, setComputedValue] = useState<number>(0);
+  const [previousComputation, setPreviousComputation] = useState({
+    price: 0,
+    percentile: 0,
+  });
   const [rounded, setRounded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -52,6 +56,10 @@ const Form = () => {
       if (rounded) calculated = Math.floor(calculated);
       if (multipleOfTen) calculated = Math.round(calculated / 10) * 10;
 
+      setPreviousComputation({
+        price: formData.price,
+        percentile: formData.percentile,
+      });
       setComputedValue(calculated);
 
       setFormData((prevData: FormFields) => ({
@@ -164,6 +172,17 @@ const Form = () => {
           </span>
           <span className="text-gray-200 select-none">/-</span>
         </p>
+
+        {previousComputation.price > 0 && (
+          <p className="mt-4 text-teal-800 leading-relaxed">
+            The resulting value of{" "}
+            <span className="font-bold">{previousComputation.price}</span>,
+            computed with the incorporation of a percentage increase of{" "}
+            <span className="font-bold">{previousComputation.percentile}</span>,
+            stands as{" "}
+            <span className="font-bold">{formattedValue(computedValue)}</span>.
+          </p>
+        )}
       </section>
     </>
   );
