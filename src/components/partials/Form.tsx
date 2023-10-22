@@ -69,7 +69,7 @@ const Form = () => {
 
             <div className="mt-4">
               <button
-                className="bg-gray-900 text-white px-6 py-3 hover:bg-teal-700 transition-colors ease-in"
+                className="bg-gray-900 text-white px-6 py-3 hover:bg-gray-700 transition-colors ease-in"
                 type="submit"
               >
                 Compute
@@ -88,7 +88,7 @@ const Form = () => {
 
         <p className="text-6xl flex tracking-tight mt-2">
           <span className="text-gray-700 truncate">--</span>
-          <span className="text-gray-300 select-none">/-</span>
+          <span className="text-gray-200 select-none">/-</span>
         </p>
       </section>
     </>
