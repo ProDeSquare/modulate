@@ -190,6 +190,12 @@ const Form = () => {
             .
           </p>
         )}
+
+        <div className="mt-4">
+          <h3 className="font-bold text-3xl md:text-4xl leading-8">
+            Previous Computations<span className="text-teal-500">.</span>
+          </h3>
+        </div>
       </section>
     </>
   );
