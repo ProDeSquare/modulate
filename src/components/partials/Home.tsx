@@ -160,43 +160,45 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="flex-1 p-5 md:w-6/12">
-        <h3 className="text-3xl md:text-4xl font-bold">
-          Result
-          <span className="text-teal-500">.</span>
-        </h3>
+      <div className="flex-1 p-5 md:w-6/12">
+        <section>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            Result
+            <span className="text-teal-500">.</span>
+          </h3>
 
-        <p className="text-6xl flex tracking-tight mt-2">
-          <span className="text-gray-700 truncate">
-            {computedValue > 0 ? formattedValue(computedValue) : "--"}
-          </span>
-          <span className="text-gray-200 select-none">/-</span>
-        </p>
-
-        {previousComputation.price > 0 && (
-          <p className="mt-4 text-teal-800 leading-relaxed">
-            The resulting value of{" "}
-            <span className="font-bold break-words">
-              {previousComputation.price}
+          <p className="text-6xl flex tracking-tight mt-2">
+            <span className="text-gray-700 truncate">
+              {computedValue > 0 ? formattedValue(computedValue) : "--"}
             </span>
-            , computed with the incorporation of a percentage increase of{" "}
-            <span className="font-bold break-words">
-              {previousComputation.percentile}
-            </span>
-            , stands as{" "}
-            <span className="font-bold break-words">
-              {formattedValue(computedValue)}
-            </span>
-            .
+            <span className="text-gray-200 select-none">/-</span>
           </p>
-        )}
 
-        <div className="mt-4">
+          {previousComputation.price > 0 && (
+            <p className="mt-4 text-teal-800 leading-relaxed">
+              The resulting value of{" "}
+              <span className="font-bold break-words">
+                {previousComputation.price}
+              </span>
+              , computed with the incorporation of a percentage increase of{" "}
+              <span className="font-bold break-words">
+                {previousComputation.percentile}
+              </span>
+              , stands as{" "}
+              <span className="font-bold break-words">
+                {formattedValue(computedValue)}
+              </span>
+              .
+            </p>
+          )}
+        </section>
+
+        <section className="mt-4 border-t border-teal-100 pt-4 md:pt-3">
           <h3 className="font-bold text-3xl md:text-4xl leading-8">
             Previous Computations<span className="text-teal-500">.</span>
           </h3>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 };
