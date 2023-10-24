@@ -193,8 +193,10 @@ const Home = () => {
           )}
         </section>
 
-        <section className="mt-4 border-t border-teal-100 pt-4 md:pt-3">
-          <h3 className="font-bold text-3xl md:text-4xl leading-8">
+        <section className="mt-5">
+          <div className="border-t border-teal-100 md:w-8/12"></div>
+
+          <h3 className="font-bold mt-3 md:mt-2 text-3xl md:text-4xl leading-8">
             Previous Computations<span className="text-teal-500">.</span>
           </h3>
         </section>
