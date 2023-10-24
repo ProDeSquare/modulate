@@ -5,7 +5,7 @@ type FormFields = {
   price: number;
 };
 
-const Form = () => {
+const Home = () => {
   const inputClasses: Array<string> = [
     "w-full",
     "px-4",
@@ -201,4 +201,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Home;
