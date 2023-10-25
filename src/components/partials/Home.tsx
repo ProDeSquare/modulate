@@ -5,6 +5,10 @@ type FormFields = {
   price: number;
 };
 
+interface ComputedValues extends FormFields {
+  computed: number;
+}
+
 const Home = () => {
   const inputClasses: Array<string> = [
     "w-full",
@@ -28,6 +32,10 @@ const Home = () => {
   });
   const [rounded, setRounded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const previousComputations: Array<ComputedValues> = JSON.parse(
+    localStorage.getItem("previous-computations") || "[]"
+  );
 
   const formattedValue = (n: number): string =>
     n % 1 !== 0 ? n.toFixed(2).toLocaleString() : n.toLocaleString();
@@ -66,6 +74,17 @@ const Home = () => {
         ...prevData,
         price: 0,
       }));
+
+      previousComputations.unshift({
+        price: formData.price,
+        percentile: formData.percentile,
+        computed: calculated,
+      });
+
+      localStorage.setItem(
+        "previous-computations",
+        JSON.stringify(previousComputations)
+      );
     } catch {
       //
     } finally {
