@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear: number = new Date().getFullYear();
 
   return (
-    <footer className="p-5 leading-snug">
+    <footer className="p-5 md:p-0 md:mt-4 leading-snug">
       <p>
         &copy;{" "}
         {currentYear === app.initYear
