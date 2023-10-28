@@ -1,4 +1,4 @@
-import Home from "@/components/partials/Home";
+import Home from "@/components/pages/Home";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 
