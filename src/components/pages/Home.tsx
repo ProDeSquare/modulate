@@ -203,7 +203,8 @@ const Home = () => {
               <span className="font-bold break-words">
                 {previousComputation.price}
               </span>
-              , computed with the incorporation of a percentage increase of{" "}
+              , computed with the incorporation of a percentage{" "}
+              {previousComputation.percentile >= 0 ? "increase" : "decrease"} of{" "}
               <span className="font-bold break-words">
                 {previousComputation.percentile}
               </span>
