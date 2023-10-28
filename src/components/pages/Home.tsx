@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import History from "@/components/partials/History";
 import Result from "@/components/partials/Result";
-import Footer from "../sections/Footer";
+import Footer from "@/components/sections/Footer";
 
 type FormFields = {
   percentile: number;
