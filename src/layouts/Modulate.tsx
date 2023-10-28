@@ -1,4 +1,4 @@
-import Form from "@/components/partials/Form";
+import Home from "@/components/partials/Home";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 
@@ -8,7 +8,7 @@ const Modulate = () => (
 
     <main>
       <div className="flex md:px-5 flex-col md:flex-row">
-        <Form />
+        <Home />
       </div>
     </main>
 

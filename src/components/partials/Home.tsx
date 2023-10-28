@@ -5,7 +5,11 @@ type FormFields = {
   price: number;
 };
 
-const Form = () => {
+interface ComputedValues extends FormFields {
+  computed: number;
+}
+
+const Home = () => {
   const inputClasses: Array<string> = [
     "w-full",
     "px-4",
@@ -29,6 +33,10 @@ const Form = () => {
   const [rounded, setRounded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [history, setHistory] = useState<ComputedValues[]>(
+    JSON.parse(localStorage.getItem("history") || "[]")
+  );
+
   const formattedValue = (n: number): string =>
     n % 1 !== 0 ? n.toFixed(2).toLocaleString() : n.toLocaleString();
 
@@ -39,6 +47,11 @@ const Form = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const clearHistory = (): void => {
+    localStorage.removeItem("history");
+    setHistory([]);
   };
 
   const computeValue = (e: FormEvent<HTMLFormElement>): void => {
@@ -61,6 +74,16 @@ const Form = () => {
         percentile: formData.percentile,
       });
       setComputedValue(calculated);
+
+      setHistory([
+        {
+          price: formData.price,
+          percentile: formData.percentile,
+          computed: calculated,
+        },
+        ...history,
+      ]);
+      localStorage.setItem("history", JSON.stringify(history));
 
       setFormData((prevData: FormFields) => ({
         ...prevData,
@@ -160,39 +183,77 @@ const Form = () => {
         </div>
       </section>
 
-      <section className="flex-1 p-5 md:w-6/12">
-        <h3 className="text-3xl md:text-4xl font-bold">
-          Result
-          <span className="text-teal-500">.</span>
-        </h3>
+      <div className="flex-1 p-5 md:w-6/12">
+        <section>
+          <h3 className="text-3xl md:text-4xl font-bold">
+            Result
+            <span className="text-teal-500">.</span>
+          </h3>
 
-        <p className="text-6xl flex tracking-tight mt-2">
-          <span className="text-gray-700 truncate">
-            {computedValue > 0 ? formattedValue(computedValue) : "--"}
-          </span>
-          <span className="text-gray-200 select-none">/-</span>
-        </p>
-
-        {previousComputation.price > 0 && (
-          <p className="mt-4 text-teal-800 leading-relaxed">
-            The resulting value of{" "}
-            <span className="font-bold break-words">
-              {previousComputation.price}
+          <p className="text-6xl flex tracking-tight mt-2">
+            <span className="text-gray-700 truncate">
+              {computedValue > 0 ? formattedValue(computedValue) : "--"}
             </span>
-            , computed with the incorporation of a percentage increase of{" "}
-            <span className="font-bold break-words">
-              {previousComputation.percentile}
-            </span>
-            , stands as{" "}
-            <span className="font-bold break-words">
-              {formattedValue(computedValue)}
-            </span>
-            .
+            <span className="text-gray-200 select-none">/-</span>
           </p>
+
+          {previousComputation.price > 0 && (
+            <p className="mt-4 text-teal-800 leading-relaxed">
+              The resulting value of{" "}
+              <span className="font-bold break-words">
+                {previousComputation.price}
+              </span>
+              , computed with the incorporation of a percentage increase of{" "}
+              <span className="font-bold break-words">
+                {previousComputation.percentile}
+              </span>
+              , stands as{" "}
+              <span className="font-bold break-words">
+                {formattedValue(computedValue)}
+              </span>
+              .
+            </p>
+          )}
+        </section>
+
+        {history.length > 0 && (
+          <section className="mt-5">
+            <div className="border-t border-teal-100 md:w-8/12"></div>
+
+            <h3 className="font-bold mt-3 md:mt-2 text-3xl md:text-4xl leading-8">
+              Previous Computations<span className="text-teal-500">.</span>
+            </h3>
+
+            <div>
+              <ul className="mt-3 flex flex-wrap text-teal-700 -mx-1">
+                {history.map((computation: ComputedValues, index: number) => (
+                  <li className="w-6/12" key={index}>
+                    <ul className="bg-teal-100 border hover:bg-teal-50 border-teal-200 transition-colors duration-300 rounded m-1 px-3 py-2 flex flex-col tracking-tight md:tracking-normal">
+                      <ul className="flex justify-between text-sm gap-1">
+                        <li className="truncate">{computation.price}/-</li>
+                        <li className="font-bold">{computation.percentile}%</li>
+                      </ul>
+
+                      <li className="text-xl font-bold mt-1 text-teal-800 truncate">
+                        {formattedValue(computation.computed)}
+                      </li>
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-1 mt-3 rounded border border-red-300 transition-colors duration-300"
+                onClick={clearHistory}
+              >
+                Clear
+              </button>
+            </div>
+          </section>
         )}
-      </section>
+      </div>
     </>
   );
 };
 
-export default Form;
+export default Home;
