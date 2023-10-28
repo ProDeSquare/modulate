@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import Result from "@/components/partials/Result";
 
 type FormFields = {
   percentile: number;
@@ -185,36 +186,11 @@ const Home = () => {
 
       <div className="flex-1 p-5 md:w-6/12">
         <section>
-          <h3 className="text-3xl md:text-4xl font-bold">
-            Result
-            <span className="text-teal-500">.</span>
-          </h3>
-
-          <p className="text-6xl flex tracking-tight mt-2">
-            <span className="text-gray-700 truncate">
-              {computedValue > 0 ? formattedValue(computedValue) : "--"}
-            </span>
-            <span className="text-gray-200 select-none">/-</span>
-          </p>
-
-          {previousComputation.price > 0 && (
-            <p className="mt-4 text-teal-800 leading-relaxed">
-              The resulting value of{" "}
-              <span className="font-bold break-words">
-                {previousComputation.price}
-              </span>
-              , computed with the incorporation of a percentage{" "}
-              {previousComputation.percentile >= 0 ? "increase" : "decrease"} of{" "}
-              <span className="font-bold break-words">
-                {previousComputation.percentile}
-              </span>
-              , stands as{" "}
-              <span className="font-bold break-words">
-                {formattedValue(computedValue)}
-              </span>
-              .
-            </p>
-          )}
+          <Result
+            price={previousComputation.price}
+            percentile={previousComputation.percentile}
+            computed={computedValue ? computedValue : 0}
+          />
         </section>
 
         {history.length > 0 && (
