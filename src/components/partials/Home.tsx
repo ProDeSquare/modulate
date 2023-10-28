@@ -221,13 +221,18 @@ const Home = () => {
             </h3>
 
             <div>
-              <ul className="mt-3 flex flex-wrap text-teal-900 -mx-1">
-                {previousComputations.map((computation) => (
+              <ul className="mt-3 flex flex-wrap text-teal-700 -mx-1">
+                {previousComputations.map((computation: ComputedValues) => (
                   <li className="w-6/12">
-                    <ul className="bg-teal-100 border border-teal-200 rounded m-1 px-3 py-2">
-                      <li>{computation.price}/-</li>
-                      <li>{computation.percentile}%</li>
-                      <li>{formattedValue(computation.computed)}</li>
+                    <ul className="bg-teal-100 border border-teal-200 rounded m-1 px-3 py-2 flex flex-col tracking-tight">
+                      <ul className="flex justify-between text-sm gap-1">
+                        <li className="truncate">{computation.price}/-</li>
+                        <li className="font-bold">{computation.percentile}%</li>
+                      </ul>
+
+                      <li className="text-xl font-bold mt-1 text-teal-800 truncate">
+                        {formattedValue(computation.computed)}
+                      </li>
                     </ul>
                   </li>
                 ))}
