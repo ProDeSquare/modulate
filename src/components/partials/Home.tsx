@@ -212,13 +212,29 @@ const Home = () => {
           )}
         </section>
 
-        <section className="mt-5">
-          <div className="border-t border-teal-100 md:w-8/12"></div>
+        {previousComputations.length > 0 && (
+          <section className="mt-5">
+            <div className="border-t border-teal-100 md:w-8/12"></div>
 
-          <h3 className="font-bold mt-3 md:mt-2 text-3xl md:text-4xl leading-8">
-            Previous Computations<span className="text-teal-500">.</span>
-          </h3>
-        </section>
+            <h3 className="font-bold mt-3 md:mt-2 text-3xl md:text-4xl leading-8">
+              Previous Computations<span className="text-teal-500">.</span>
+            </h3>
+
+            <div>
+              <ul className="mt-3 flex flex-wrap text-teal-900 -mx-1">
+                {previousComputations.map((computation) => (
+                  <li className="w-6/12">
+                    <ul className="bg-teal-100 border border-teal-200 rounded m-1 px-3 py-2">
+                      <li>{computation.price}/-</li>
+                      <li>{computation.percentile}%</li>
+                      <li>{formattedValue(computation.computed)}</li>
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );
