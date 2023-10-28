@@ -33,8 +33,8 @@ const Home = () => {
   const [rounded, setRounded] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const previousComputations: Array<ComputedValues> = JSON.parse(
-    localStorage.getItem("previous-computations") || "[]"
+  const [history, setHistory] = useState<ComputedValues[]>(
+    JSON.parse(localStorage.getItem("history") || "[]")
   );
 
   const formattedValue = (n: number): string =>
@@ -47,6 +47,11 @@ const Home = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const clearHistory = (): void => {
+    localStorage.removeItem("history");
+    setHistory([]);
   };
 
   const computeValue = (e: FormEvent<HTMLFormElement>): void => {
@@ -70,21 +75,20 @@ const Home = () => {
       });
       setComputedValue(calculated);
 
+      setHistory([
+        {
+          price: formData.price,
+          percentile: formData.percentile,
+          computed: calculated,
+        },
+        ...history,
+      ]);
+      localStorage.setItem("history", JSON.stringify(history));
+
       setFormData((prevData: FormFields) => ({
         ...prevData,
         price: 0,
       }));
-
-      previousComputations.unshift({
-        price: formData.price,
-        percentile: formData.percentile,
-        computed: calculated,
-      });
-
-      localStorage.setItem(
-        "previous-computations",
-        JSON.stringify(previousComputations)
-      );
     } catch {
       //
     } finally {
@@ -212,7 +216,7 @@ const Home = () => {
           )}
         </section>
 
-        {previousComputations.length > 0 && (
+        {history.length > 0 && (
           <section className="mt-5">
             <div className="border-t border-teal-100 md:w-8/12"></div>
 
@@ -222,9 +226,9 @@ const Home = () => {
 
             <div>
               <ul className="mt-3 flex flex-wrap text-teal-700 -mx-1">
-                {previousComputations.map((computation: ComputedValues) => (
-                  <li className="w-6/12">
-                    <ul className="bg-teal-100 border border-teal-200 rounded m-1 px-3 py-2 flex flex-col tracking-tight">
+                {history.map((computation: ComputedValues, index: number) => (
+                  <li className="w-6/12" key={index}>
+                    <ul className="bg-teal-100 border hover:bg-teal-50 border-teal-200 transition-colors duration-300 rounded m-1 px-3 py-2 flex flex-col tracking-tight md:tracking-normal">
                       <ul className="flex justify-between text-sm gap-1">
                         <li className="truncate">{computation.price}/-</li>
                         <li className="font-bold">{computation.percentile}%</li>
@@ -237,6 +241,13 @@ const Home = () => {
                   </li>
                 ))}
               </ul>
+
+              <button
+                className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-1 mt-3 rounded border border-red-300 transition-colors duration-300"
+                onClick={clearHistory}
+              >
+                Clear
+              </button>
             </div>
           </section>
         )}
