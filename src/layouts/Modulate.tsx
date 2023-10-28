@@ -12,7 +12,9 @@ const Modulate = () => (
       </div>
     </main>
 
-    <Footer />
+    <div className="md:hidden">
+      <Footer />
+    </div>
   </div>
 );
 

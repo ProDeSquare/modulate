@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import History from "@/components/partials/History";
 import Result from "@/components/partials/Result";
+import Footer from "../sections/Footer";
 
 type FormFields = {
   percentile: number;
@@ -181,6 +182,10 @@ const Home = () => {
               </div>
             </form>
           </div>
+        </div>
+
+        <div className="hidden md:block">
+          <Footer />
         </div>
       </section>
 
