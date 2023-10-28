@@ -1,3 +1,5 @@
+import format from "@/helpers/format";
+
 type HistoryArgs = "price" | "percentile" | "computed";
 
 type HistoryType = Record<HistoryArgs, number>;
@@ -21,7 +23,7 @@ const History = ({ history }: { history: HistoryType[] }) => (
               </ul>
 
               <li className="text-xl font-bold mt-1 text-teal-800 truncate">
-                {computation.computed}
+                {format(computation.computed)}
               </li>
             </ul>
           </li>

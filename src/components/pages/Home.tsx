@@ -39,9 +39,6 @@ const Home = () => {
     JSON.parse(localStorage.getItem("history") || "[]")
   );
 
-  const formattedValue = (n: number): string =>
-    n % 1 !== 0 ? n.toFixed(2).toLocaleString() : n.toLocaleString();
-
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
 
