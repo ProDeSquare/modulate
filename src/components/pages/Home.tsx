@@ -82,7 +82,6 @@ const Home = () => {
         },
         ...history,
       ]);
-      localStorage.setItem("history", JSON.stringify(history));
 
       setFormData((prevData: FormFields) => ({
         ...prevData,
