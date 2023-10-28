@@ -119,7 +119,7 @@ const Home = () => {
 
                 <input
                   type="number"
-                  placeholder="75"
+                  placeholder="25"
                   className={inputClasses.join(" ")}
                   id="percentile"
                   name="percentile"
