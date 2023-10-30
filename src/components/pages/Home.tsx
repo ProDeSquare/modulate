@@ -202,12 +202,18 @@ const Home = () => {
           <section className="mt-5">
             <History history={history} />
 
-            <button
-              className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-1 mt-3 rounded border border-red-300 transition-colors duration-300"
-              onClick={clearHistory}
-            >
-              Clear
-            </button>
+            <div className="flex justify-between mt-3">
+              <button
+                className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-1 rounded border border-red-300 transition-colors duration-300"
+                onClick={clearHistory}
+              >
+                Clear
+              </button>
+
+              <button className="bg-gray-900 hover:bg-gray-700 text-white px-5 py-1 transition-colors duration-300">
+                Export JSON
+              </button>
+            </div>
           </section>
         )}
       </div>
