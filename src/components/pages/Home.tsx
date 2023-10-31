@@ -54,6 +54,20 @@ const Home = () => {
     setHistory([]);
   };
 
+  const exportJSON = (): void => {
+    const jsonStr: string = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(history)
+    )}`;
+
+    const d: Date = new Date();
+
+    const link: HTMLAnchorElement = document.createElement("a");
+    link.href = jsonStr;
+    link.download = `data-${d.getHours()}${d.getMinutes()}${d.getSeconds()}${d.getMilliseconds()}.json`;
+
+    link.click();
+  };
+
   const computeValue = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
@@ -210,7 +224,10 @@ const Home = () => {
                 Clear
               </button>
 
-              <button className="bg-gray-900 hover:bg-gray-700 text-white px-5 py-1 transition-colors duration-300">
+              <button
+                className="bg-gray-900 hover:bg-gray-700 text-white px-5 py-1 transition-colors duration-300"
+                onClick={exportJSON}
+              >
                 Export JSON
               </button>
             </div>
