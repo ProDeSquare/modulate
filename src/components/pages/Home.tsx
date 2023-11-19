@@ -216,20 +216,33 @@ const Home = () => {
           <section className="mt-5">
             <History history={history} />
 
-            <div className="flex justify-between mt-3">
+            <div className="flex md:justify-between flex-col md:flex-row mt-3">
               <button
-                className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-1 rounded border border-red-300 transition-colors duration-300"
+                className="text-red-900 bg-red-200 hover:bg-red-100 px-4 py-2 md:py-1 rounded border border-red-300 transition-colors duration-300"
                 onClick={clearHistory}
               >
                 Clear
               </button>
 
-              <button
-                className="bg-gray-900 hover:bg-gray-700 text-white px-5 py-1 transition-colors duration-300"
-                onClick={exportJSON}
-              >
-                Export JSON
-              </button>
+              <div className="flex justify-between items-center mt-4 md:mt-0">
+                <div className="mr-3">
+                  <label htmlFor="json-file-input">Import JSON</label>
+
+                  <input
+                    type="file"
+                    accept=".json"
+                    className="hidden"
+                    id="json-file-input"
+                  />
+                </div>
+
+                <button
+                  className="bg-gray-900 hover:bg-gray-700 text-white px-5 py-1 transition-colors duration-300"
+                  onClick={exportJSON}
+                >
+                  Export JSON
+                </button>
+              </div>
             </div>
           </section>
         )}
